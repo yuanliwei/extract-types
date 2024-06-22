@@ -1,0 +1,37 @@
+{
+  "name": "extract-types",
+  "version": "1.0.0",
+  "description": "extract types from js jsdoc ts json",
+  "main": "src/lib.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --test --experimental-test-coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/yuanliwei/extract-types.git"
+  },
+  "keywords": [
+    "extract",
+    "d.ts",
+    "jsdoc",
+    "types"
+  ],
+  "types": "types.d.ts",
+  "author": "yuanliwei",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yuanliwei/extract-types/issues"
+  },
+  "homepage": "https://github.com/yuanliwei/extract-types#readme",
+  "bin": {
+    "extract-types": "bin/extract-types.js"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "typescript": "^5.5.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.7"
+  }
+}
