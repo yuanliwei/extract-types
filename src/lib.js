@@ -4,11 +4,12 @@ import ts from "typescript"
 /**
  * @param {string} file
  * @param {boolean} isJson
- * @param {ts.CompilerOptions} options
+ * @param {ts.CompilerOptions&{debug?:boolean}} options
  */
 export function extractTypesFromFile(file, isJson = false, options) {
     let host = ts.createCompilerHost(options)
 
+    let processFile = file
     let content = ''
     if (isJson) {
         content = readFileSync(file, 'utf-8')
@@ -17,7 +18,9 @@ export function extractTypesFromFile(file, isJson = false, options) {
 
     let originReadFile = host.readFile
     host.readFile = (fileName) => {
-        console.log('readFile', fileName)
+        if (options.debug) {
+            console.log('readFile', fileName)
+        }
         if (isJson && fileName == file) {
             return `export function data(){return ${content.trim()}}`
         }
@@ -26,7 +29,7 @@ export function extractTypesFromFile(file, isJson = false, options) {
 
     let results = []
     host.writeFile = (fileName, contents) => {
-        console.log('genterate types for', fileName)
+        console.log('genterate types for', fileName == file ? processFile : file)
         results.push(`/** ${fileName} */`)
         results.push(contents)
     }
@@ -39,7 +42,7 @@ export function extractTypesFromFile(file, isJson = false, options) {
 /**
  * @param {string} source
  * @param {boolean} isJson
- * @param {ts.CompilerOptions} options
+ * @param {ts.CompilerOptions&{debug?:boolean}} options
  */
 export function extractTypesFromSource(source, isJson = false, options) {
     let host = ts.createCompilerHost(options)
@@ -49,7 +52,9 @@ export function extractTypesFromSource(source, isJson = false, options) {
 
     let originReadFile = host.readFile
     host.readFile = (fileName) => {
-        console.log('readFile', fileName)
+        if (options.debug) {
+            console.log('readFile', fileName)
+        }
         if (fileName == file) {
             if (isJson) {
                 return `export function data(){return ${content.trim()}}`

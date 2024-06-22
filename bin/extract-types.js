@@ -16,6 +16,7 @@ program
 program.argument('<filepath>', 'input file path')
 program.option('-o, --output <filepath>', 'output file path')
 program.option('-t, --type <js|ts|json>', 'input file type')
+program.option('-d, --debug', 'show debug message')
 
 let command = program.parse()
 
@@ -23,6 +24,7 @@ let input = command.args.at(0)
 
 let output = command.opts().output
 let type = command.opts().type
+let debug = command.opts().debug
 
 if (input.endsWith('.json')) {
     type = type || 'json'
@@ -30,9 +32,10 @@ if (input.endsWith('.json')) {
 
 let inputFile = resolve(input)
 
-console.log(type, output)
+console.log('type:', type ?? 'js', output ?? '')
 
 let types = extractTypesFromFile(inputFile, type == 'json', {
+    debug,
     allowJs: true,
     declaration: true,
     emitDeclarationOnly: true,
