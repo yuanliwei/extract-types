@@ -28,10 +28,10 @@
     "extract-types": "bin/extract-types.js"
   },
   "dependencies": {
-    "commander": "^12.1.0",
-    "typescript": "^5.5.2"
+    "commander": "^14.0.2",
+    "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "@types/node": "^20.14.7"
+    "@types/node": "^25.0.3"
   }
 }

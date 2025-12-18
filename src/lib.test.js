@@ -11,8 +11,12 @@ test('extract-types-from-file', async () => {
         emitDeclarationOnly: true,
     })
     console.log(types)
-    ok(types.includes(`export function extractTypesFromFile(file: string, isJson: boolean, options: ts.CompilerOptions): string;`))
-    ok(types.includes(`export function extractTypesFromSource(source: string, isJson: boolean, options: ts.CompilerOptions): string;`))
+    ok(types.includes(`export function extractTypesFromFile(file: string, isJson: boolean, options: ts.CompilerOptions & {
+    debug?: boolean;
+}): string;`))
+    ok(types.includes(`export function extractTypesFromSource(source: string, isJson: boolean, options: ts.CompilerOptions & {
+    debug?: boolean;
+}): string;`))
 })
 
 test('extract-types-from-file-json', async () => {
