@@ -1,6 +1,6 @@
 {
   "name": "extract-types",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "extract types from js jsdoc ts json",
   "main": "src/lib.js",
   "type": "module",
