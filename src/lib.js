@@ -27,6 +27,7 @@ export function extractTypesFromFile(file, isJson = false, options) {
         return originReadFile(fileName)
     }
 
+    /** @type{string[]} */
     let results = []
     host.writeFile = (fileName, contents) => {
         console.log('genterate types for', fileName == file ? processFile : file)
@@ -65,6 +66,7 @@ export function extractTypesFromSource(source, isJson = false, options) {
         return originReadFile(fileName)
     }
 
+    /** @type{string[]} */
     let results = []
     host.writeFile = (fileName, contents) => {
         console.log('genterate types for', fileName)
